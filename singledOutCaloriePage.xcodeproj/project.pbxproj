@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B27A9632265EFAB6001C22D6 /* UserMetricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A9631265EFAB6001C22D6 /* UserMetricsView.swift */; };
+		B27A9634265EFAC3001C22D6 /* GoalAndActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A9633265EFAC3001C22D6 /* GoalAndActivityView.swift */; };
+		B27A9636265EFB10001C22D6 /* CalorieSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A9635265EFB10001C22D6 /* CalorieSliderView.swift */; };
+		B27A9638265EFB18001C22D6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A9637265EFB18001C22D6 /* ViewModel.swift */; };
+		B27A963A265EFB1E001C22D6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A9639265EFB1E001C22D6 /* Model.swift */; };
 		B2E20A2E265C7920001CC748 /* singledOutCaloriePageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E20A2D265C7920001CC748 /* singledOutCaloriePageApp.swift */; };
 		B2E20A30265C7920001CC748 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E20A2F265C7920001CC748 /* ContentView.swift */; };
 		B2E20A32265C7922001CC748 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2E20A31265C7922001CC748 /* Assets.xcassets */; };
@@ -14,6 +19,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B27A9631265EFAB6001C22D6 /* UserMetricsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMetricsView.swift; sourceTree = "<group>"; };
+		B27A9633265EFAC3001C22D6 /* GoalAndActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalAndActivityView.swift; sourceTree = "<group>"; };
+		B27A9635265EFB10001C22D6 /* CalorieSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieSliderView.swift; sourceTree = "<group>"; };
+		B27A9637265EFB18001C22D6 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		B27A9639265EFB1E001C22D6 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		B2E20A2A265C7920001CC748 /* singledOutCaloriePage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = singledOutCaloriePage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2E20A2D265C7920001CC748 /* singledOutCaloriePageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = singledOutCaloriePageApp.swift; sourceTree = "<group>"; };
 		B2E20A2F265C7920001CC748 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -33,6 +43,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B2228901265C842A009317F9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B27A9639265EFB1E001C22D6 /* Model.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B2228902265C8430009317F9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B27A9631265EFAB6001C22D6 /* UserMetricsView.swift */,
+				B27A9633265EFAC3001C22D6 /* GoalAndActivityView.swift */,
+				B27A9635265EFB10001C22D6 /* CalorieSliderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B27A962E265EF5F7001C22D6 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				B27A9637265EFB18001C22D6 /* ViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
 		B2E20A21265C7920001CC748 = {
 			isa = PBXGroup;
 			children = (
@@ -52,6 +88,9 @@
 		B2E20A2C265C7920001CC748 /* singledOutCaloriePage */ = {
 			isa = PBXGroup;
 			children = (
+				B2228901265C842A009317F9 /* Models */,
+				B27A962E265EF5F7001C22D6 /* View Models */,
+				B2228902265C8430009317F9 /* Views */,
 				B2E20A2D265C7920001CC748 /* singledOutCaloriePageApp.swift */,
 				B2E20A2F265C7920001CC748 /* ContentView.swift */,
 				B2E20A31265C7922001CC748 /* Assets.xcassets */,
@@ -139,7 +178,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2E20A30265C7920001CC748 /* ContentView.swift in Sources */,
+				B27A9632265EFAB6001C22D6 /* UserMetricsView.swift in Sources */,
 				B2E20A2E265C7920001CC748 /* singledOutCaloriePageApp.swift in Sources */,
+				B27A9634265EFAC3001C22D6 /* GoalAndActivityView.swift in Sources */,
+				B27A9636265EFB10001C22D6 /* CalorieSliderView.swift in Sources */,
+				B27A9638265EFB18001C22D6 /* ViewModel.swift in Sources */,
+				B27A963A265EFB1E001C22D6 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
