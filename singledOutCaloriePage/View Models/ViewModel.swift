@@ -9,5 +9,18 @@ import Foundation
 import SwiftUI
 
 class UserMetricViewModel: ObservableObject {
-    var defaultUserMetricData = UserMetricData(ageInput: , weightInput: 0, heightFeet: 0, heightInches: 0)
+    @Binding var ageInput: Int
+    @Binding var weightInput: Int
+    @Binding  var heightFeet: Int
+    @Binding  var heightInches: Int
+    
+    init(ageInput: Binding<Int>, weightInput: Binding<Int>, heightFeet: Binding<Int>, heightInches: Binding<Int>) {
+        self._ageInput = ageInput
+        self._weightInput = weightInput
+        self._heightFeet = heightFeet
+        self._heightInches = heightInches
+    }
 }
+
+
+

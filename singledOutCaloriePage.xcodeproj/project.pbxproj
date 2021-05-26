@@ -13,7 +13,6 @@
 		B27A9638265EFB18001C22D6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A9637265EFB18001C22D6 /* ViewModel.swift */; };
 		B27A963A265EFB1E001C22D6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A9639265EFB1E001C22D6 /* Model.swift */; };
 		B2E20A2E265C7920001CC748 /* singledOutCaloriePageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E20A2D265C7920001CC748 /* singledOutCaloriePageApp.swift */; };
-		B2E20A30265C7920001CC748 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E20A2F265C7920001CC748 /* ContentView.swift */; };
 		B2E20A32265C7922001CC748 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2E20A31265C7922001CC748 /* Assets.xcassets */; };
 		B2E20A35265C7922001CC748 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2E20A34265C7922001CC748 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -26,7 +25,6 @@
 		B27A9639265EFB1E001C22D6 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		B2E20A2A265C7920001CC748 /* singledOutCaloriePage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = singledOutCaloriePage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2E20A2D265C7920001CC748 /* singledOutCaloriePageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = singledOutCaloriePageApp.swift; sourceTree = "<group>"; };
-		B2E20A2F265C7920001CC748 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B2E20A31265C7922001CC748 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2E20A34265C7922001CC748 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B2E20A36265C7922001CC748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 				B27A962E265EF5F7001C22D6 /* View Models */,
 				B2228902265C8430009317F9 /* Views */,
 				B2E20A2D265C7920001CC748 /* singledOutCaloriePageApp.swift */,
-				B2E20A2F265C7920001CC748 /* ContentView.swift */,
 				B2E20A31265C7922001CC748 /* Assets.xcassets */,
 				B2E20A36265C7922001CC748 /* Info.plist */,
 				B2E20A33265C7922001CC748 /* Preview Content */,
@@ -177,7 +174,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2E20A30265C7920001CC748 /* ContentView.swift in Sources */,
 				B27A9632265EFAB6001C22D6 /* UserMetricsView.swift in Sources */,
 				B2E20A2E265C7920001CC748 /* singledOutCaloriePageApp.swift in Sources */,
 				B27A9634265EFAC3001C22D6 /* GoalAndActivityView.swift in Sources */,

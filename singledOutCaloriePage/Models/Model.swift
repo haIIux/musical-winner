@@ -64,17 +64,3 @@ enum GoalSelector: Double, CaseIterable {
 }
 
 
-struct UserMetricData {
-    @Binding var ageInput: Int
-    @Binding var weightInput: Int
-    @Binding  var heightFeet: Int
-    @Binding  var heightInches: Int
-    
-    init(ageInput: Binding<Int>, weightInput: Binding<Int>, heightFeet: Binding<Int>, heightInches: Binding<Int>) {
-        self._ageInput = ageInput
-        self._weightInput = weightInput
-        self._heightFeet = heightFeet
-        self._heightInches = heightInches
-    }
-}
-

@@ -14,14 +14,14 @@ struct UserMetricsView: View {
         VStack {
             Text("Calorie Calculator")
             HStack {
-                TextField("Age", value: $viewModel.defaultUserMetricData, formatter: NumberFormatter())
+                TextField("Age", value: $viewModel.ageInput, formatter: NumberFormatter())
             }
         }
     }
 }
 
-struct UserMetricsView_Previews: PreviewProvider {
-    static var previews: some View {
-        UserMetricsView(viewModel: .init())
-    }
-}
+//struct UserMetricsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UserMetricsView()
+//    }
+//}
