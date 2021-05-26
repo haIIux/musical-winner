@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var viewModel: UserMetricViewModel
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Text(String(viewModel.defaultUserMetricData.ageInput))
+        }
     }
 }
 
+
 struct ContentView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        ContentView()
+        ContentView(viewModel: .init())
     }
 }
