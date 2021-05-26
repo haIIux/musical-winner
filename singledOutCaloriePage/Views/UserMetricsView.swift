@@ -25,13 +25,11 @@ struct UserMetricsView: View {
                 TextField("Inches", value: $viewModel.heightInches, formatter: NumberFormatter())
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
+            
+            Button("Print Me!") {
+                print($viewModel.ageInput)
+            }
         }
         .padding(.horizontal, 50)
     }
 }
-
-//struct UserMetricsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        UserMetricsView()
-//    }
-//}
