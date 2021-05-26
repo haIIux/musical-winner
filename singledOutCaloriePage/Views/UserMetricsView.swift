@@ -15,8 +15,18 @@ struct UserMetricsView: View {
             Text("Calorie Calculator")
             HStack {
                 TextField("Age", value: $viewModel.ageInput, formatter: NumberFormatter())
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                TextField("Weight", value: $viewModel.weightInput, formatter: NumberFormatter())
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }
+            HStack {
+                TextField("Feet", value: $viewModel.heightFeet, formatter: NumberFormatter())
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                TextField("Inches", value: $viewModel.heightInches, formatter: NumberFormatter())
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
             }
         }
+        .padding(.horizontal, 50)
     }
 }
 
