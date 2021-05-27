@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct CalorieSliderView: View {
+    @ObservedObject var dataModel = UserDataViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Text("Hi")
     }
 }
 

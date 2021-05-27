@@ -39,7 +39,8 @@ enum ActivityLevelSelector: Double, CaseIterable {
     }
 }
 
-enum GoalSelector: Double, CaseIterable {
+enum WeightGoal: Double, CaseIterable, Identifiable {
+    var id: RawValue { rawValue }
     
     case mildWeightLoss = 0.18 // 18% deficit.
     case moderateWeightLoss = 0.25 // 25% deficit.
@@ -64,3 +65,60 @@ enum GoalSelector: Double, CaseIterable {
 }
 
 
+protocol Height {
+    var heightInCentimeters: Int { get }
+}
+
+struct ImperialHeight: Height {
+    var feet: Int
+    var inches: Int
+    
+    var heightInCentimeters: Int {
+        Int(((Double(feet) * 12.0)) + Double(inches) * 2.54)
+    }
+}
+
+struct MetricHeight: Height {
+    var heightInCentimeters: Int
+}
+
+protocol Weight {
+    var weightInKilograms: Int { get }
+}
+
+struct ImperialWeight: Weight {
+    var pounds: Int
+    
+    var weightInKilograms: Int {
+        Int(Double(pounds) * 0.4535924)
+    }
+}
+
+struct MetricWeight {
+    var weightInKilograms: Int
+}
+
+
+
+struct UserData {
+    var age: Int = 18
+    var weight: Weight
+    var height: Height
+}
+
+struct CalculationData {
+    var showAlert = false
+    
+    var dailyCalories: Double = 2000.0
+    var carbohydrateSlider = 50.0
+    var fatsSlider = 25.0
+    var proteinSlider = 25.0
+    
+    var defaultCarbohydrateValue: Double = 0.50
+    var defaultFatValue: Double = 0.25
+    var defaultProteinValue: Double = 0.25
+    
+    var carbsOutputText = 0.0
+    var fatsOutputText = 0.0
+    var proteinOutputText = 0.0
+}

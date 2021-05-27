@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct GoalAndActivityView: View {
+    @ObservedObject var dataModel = UserDataViewModel()
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Please select your activity level.")
+            Picker("Activity Level", selection: $dataModel.activityLevel) {
+                ForEach(ActivityLevelSelector.allCases, id: \.self) {
+                    Text($0.description.capitalized)
+                }
+            }
+            Text("Please select your goal.")
+            Picker("Goal", selection: $dataModel.goal) {
+                ForEach(WeightGoal.allCases, id: \.self) {
+                    Text($0.description.capitalized)
+                }
+            }
+        }
     }
 }
 

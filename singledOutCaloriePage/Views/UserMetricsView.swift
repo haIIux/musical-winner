@@ -8,28 +8,52 @@
 import SwiftUI
 
 struct UserMetricsView: View {
-    @ObservedObject var viewModel: UserMetricViewModel
-    
+    @ObservedObject var dataModel = UserDataViewModel()
+    @State var selection = 0
     var body: some View {
-        VStack {
-            Text("Calorie Calculator")
-            HStack {
-                TextField("Age", value: $viewModel.ageInput, formatter: NumberFormatter())
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                TextField("Weight", value: $viewModel.weightInput, formatter: NumberFormatter())
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+        NavigationView {
+            VStack {
+                Text("Calorie Calculator")
+                    .bold()
+                    .font(.title3)
+                Divider()
+                    .padding()
+                Picker("Gender", selection: $dataModel.gender) {
+                    ForEach(GenderPickerSelector.allCases, id: \.self) {
+                        Text($0.rawValue.capitalized)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                Divider()
+                    .padding()
+                HStack {
+                    TextField("Age", value: $dataModel.userData.age, formatter: NumberFormatter())
+                    TextField("Weight", value: $dataModel.userData.weight, formatter: NumberFormatter())
+                }
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                HStack {
+                    TextField("Height", value: $dataModel.userData.height, formatter: NumberFormatter())
+                    TextField("Height", value: $dataModel.userData.height, formatter: NumberFormatter())
+                }
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                Divider()
+                    .padding()
+                Text("Data in Models from View Models").font(.headline).padding(.bottom)
+                Text("User is \(dataModel.userData.age) years old, and has a goal of \(dataModel.goal.description)")
+                    .lineLimit(nil)
+                    .multilineTextAlignment(.leading)
+                Button("Print Me!") {
+                    print($dataModel.userData)
+                }
             }
-            HStack {
-                TextField("Feet", value: $viewModel.heightFeet, formatter: NumberFormatter())
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                TextField("Inches", value: $viewModel.heightInches, formatter: NumberFormatter())
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-            }
-            
-            Button("Print Me!") {
-                print($viewModel.ageInput)
-            }
+            .padding()
         }
-        .padding(.horizontal, 50)
+    }
+}
+
+
+struct UserMetricsView_Previews: PreviewProvider {
+    static var previews: some View {
+        UserMetricsView()
     }
 }
