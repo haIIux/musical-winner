@@ -112,10 +112,13 @@ class UserDataViewModel: ObservableObject {
 
 struct DisplayTextFieldData {
     // Access the class here, then get the data from it. Then on the View we will call the data from THIS... figure out how to fix the error below.
-    
     let userDataAccess = UserDataViewModel()
+
+    var body: some View {
+        Text("\(userDataAccess.userData.age)")
+    }
     
-    var userAge = userDataAccess.userData.age
+    
     
 }
 
