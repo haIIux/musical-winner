@@ -20,8 +20,6 @@ class UserDataViewModel: ObservableObject {
     func synchronizedSlider(from bindings: [Binding<Double>], index: Int) -> some View {
         return Slider(value: synchronizedBinding(from: bindings, index: index), in: 0...100)
     }
-    
-    
     func synchronizedBinding(from bindings: [Binding<Double>], index: Int) -> Binding<Double> {
         
         return Binding(get: {
@@ -110,6 +108,15 @@ class UserDataViewModel: ObservableObject {
     //        }
 }
 
+// Use the View Model to get the input from the UserMetricView TextFields, then parse the data and let the view call for it.
 
+struct DisplayTextFieldData {
+    // Access the class here, then get the data from it. Then on the View we will call the data from THIS... figure out how to fix the error below.
+    
+    let userDataAccess = UserDataViewModel()
+    
+    var userAge = userDataAccess.userData.age
+    
+}
 
 
