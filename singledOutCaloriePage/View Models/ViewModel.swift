@@ -10,7 +10,7 @@ import SwiftUI
 
 class UserDataViewModel: ObservableObject {
     
-    @Published var userData: UserData = UserData(weight: ImperialWeight(pounds: 220), height: ImperialHeight(feet: 6, inches: 2))
+    @Published var userData: UserData = UserData()
     @Published var calculationData: CalculationData = CalculationData()
     
     @Published var goal: WeightGoal = WeightGoal.maintainWeight

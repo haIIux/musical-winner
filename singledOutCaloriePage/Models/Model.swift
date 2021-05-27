@@ -101,9 +101,9 @@ struct MetricWeight {
 
 
 struct UserData {
-    var age: Int = 18
-    var weight: Weight
-    var height: Height
+    var age: Int?
+    var weight: Weight?
+    var height: Weight?
 }
 
 struct CalculationData {

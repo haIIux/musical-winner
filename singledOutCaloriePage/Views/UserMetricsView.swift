@@ -39,11 +39,8 @@ struct UserMetricsView: View {
                 Divider()
                     .padding()
                 Text("Data in Models from View Models").font(.headline).padding(.bottom)
-                Text("User is \(dataModel.userData.age) years old, and has a goal of \(dataModel.goal.description)")
-                    .lineLimit(nil)
-                    .multilineTextAlignment(.leading)
                 Button("Print Me!") {
-                    print($dataModel.userData)
+                    print(dataModel.userData)
                 }
             }
             .padding()
