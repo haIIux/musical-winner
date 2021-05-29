@@ -19,18 +19,31 @@ class UserDataViewModel: ObservableObject {
     
     
     
-    //    func maleBMR() -> Double {
-    //            let heightConversionFunction = ConvertHeight()
-    //            let weightConversionFunction = convertPoundsToKg()
-    //
-    //            let stepOne = 10 * userData.height // weightConversionFunction
-    //            let stepTwo = 6.25 * userData.height // heightConversionFunction
-    //            let stepThree = 5 * Double(ageInput)! // Age in Years.
-    //            let stepFour = stepOne + stepTwo - stepThree + 5
-    //            let stepFive = stepFour - chosenGoal.rawValue
-    //
-    //            return Double(stepFive)
-    //        }
+    func calculateMaleBMR(weight: Int, height: Int, age: Int) -> Double {
+        
+        let userWeightInput = ImperialWeight(pounds: Double(userData?.weight))
+        let userHeightInput = userData?.height
+        let userAgeInput = userData?.age
+        
+        
+    }
+    
+//        func maleBMR() -> Double {
+//
+//                let userHeightInput = ImperialWeight.init(pounds: userData?.weight!)
+//                let userWeightInput = userData?.weight
+//                guard let userAgeInput = userData?.age else { return 0.0 }
+//            
+//                
+//
+//                let stepOne = 10 * userWeightInput         // weightConversionFunction
+//                let stepTwo = 6.25 * Double(userData.height  )          // heightConversionFunction
+//                let stepThree = 5 * userAgeInput                    // Age in Years.
+//                let stepFour = stepOne + stepTwo - stepThree + 5
+//                let stepFive = stepFour - goal.rawValue
+//    
+//                return Double(stepFive)
+//            }
     //
     //        func femaleBMR() -> Double {
     //            let heightConversionFunction = ConvertHeight()

@@ -87,7 +87,7 @@ protocol Weight {
 }
 
 struct ImperialWeight: Weight {
-    var pounds: Int
+    var pounds: Double
     
     var weightInKilograms: Int {
         Int(Double(pounds) * 0.4535924)
@@ -106,15 +106,29 @@ struct UserData {
     var height: Height
     
     init?(age: String, weight: String, heightFeet: String, heightInches: String) {
+        
         let filteredAge = age.filter { "0123456789".contains($0) }
         guard let validAgeInput = Int(filteredAge) else {
             return nil
         }
         self.age = validAgeInput
         
+        
+        let filteredWeight = weight.filter { "0123456789".contains($0) }
+        guard let validWeightInput = Int(filteredWeight) else {
+            return nil
+        }
+        self.weight = validWeightInput as! Weight
+        
+//        let filteredHeight = height.filter { "0123456789".contains($0) }
+//        guard let validHeightInput = Int(filteredHeight) else {
+//            return nil
+//        }
+//        self.height = validHeightInput as! Height
+        
+    
         // Fix below to mirror above by creating 3 more filters.
         self.height = ImperialHeight(feet: 6, inches: 2)
-        self.weight = ImperialWeight(pounds: 220)
     }
 }
 
