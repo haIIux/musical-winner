@@ -101,10 +101,23 @@ struct MetricWeight {
 
 
 struct UserData {
-    var age: Int?
-    var weight: Weight?
-    var height: Weight?
+    var age: Int
+    var weight: Weight
+    var height: Height
+    
+    init?(age: String, weight: String, heightFeet: String, heightInches: String) {
+        let filteredAge = age.filter { "0123456789".contains($0) }
+        guard let validAgeInput = Int(filteredAge) else {
+            return nil
+        }
+        self.age = validAgeInput
+        
+        // Fix below to mirror above by creating 3 more filters.
+        self.height = ImperialHeight(feet: 6, inches: 2)
+        self.weight = ImperialWeight(pounds: 220)
+    }
 }
+
 
 struct CalculationData {
     var showAlert = false

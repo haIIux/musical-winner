@@ -8,15 +8,25 @@
 import SwiftUI
 
 struct HomeView: View {
+    @ObservedObject var userModelViewModel: UserDataViewModel
     @State var selection = 0
     var body: some View {
-        Text("Hi")
+        TabView(selection: $selection) {
+            UserMetricsView(dataModel: userModelViewModel, selection: $selection)
+                .tag(0)
+            GoalAndActivityView()
+                .tag(1)
+            CalorieSliderView()
+                .tag(2)
+        }
+        .tabViewStyle(PageTabViewStyle())
+        .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
     }
 }
 
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(userModelViewModel: UserDataViewModel())
     }
 }

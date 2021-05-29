@@ -9,10 +9,10 @@ import SwiftUI
 
 @main
 struct singledOutCaloriePageApp: App {
-
+    let userDataModel = UserDataViewModel()
     var body: some Scene {
         WindowGroup {
-            UserMetricsView()
+            HomeView(userModelViewModel: userDataModel)
         }
     }
 }
