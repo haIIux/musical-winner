@@ -65,47 +65,12 @@ enum WeightGoal: Double, CaseIterable, Identifiable {
 }
 
 
-protocol Height {
-    var heightInCentimeters: Int { get }
-}
-
-struct ImperialHeight: Height {
-    var feet: Int
-    var inches: Int
-    
-    var heightInCentimeters: Int {
-        Int(((Double(feet) * 12.0)) + Double(inches) * 2.54)
-    }
-}
-
-struct MetricHeight: Height {
-    var heightInCentimeters: Int
-}
-
-protocol Weight {
-    var weightInKilograms: Int { get }
-}
-
-struct ImperialWeight: Weight {
-    var pounds: Double
-    
-    var weightInKilograms: Int {
-        Int(Double(pounds) * 0.4535924)
-    }
-}
-
-struct MetricWeight {
-    var weightInKilograms: Int
-}
-
-
-
 struct UserData {
     var age: Int
-    var weight: Weight
-    var height: Height
+    var weight: Double
+    var height: Double
     
-    init?(age: String, weight: String, heightFeet: String, heightInches: String) {
+    init?(age: String, weight: String, height: String) {
         
         let filteredAge = age.filter { "0123456789".contains($0) }
         guard let validAgeInput = Int(filteredAge) else {
@@ -115,20 +80,17 @@ struct UserData {
         
         
         let filteredWeight = weight.filter { "0123456789".contains($0) }
-        guard let validWeightInput = Int(filteredWeight) else {
+        guard let validWeightInput = Double(filteredWeight) else {
             return nil
         }
-        self.weight = validWeightInput as! Weight
+        self.weight = validWeightInput
+            
+        let filteredHeight = height.filter { "0123456789".contains($0) }
+        guard let validHeight = Double(filteredHeight) else {
+            return nil
+        }
+        self.height = validHeight
         
-//        let filteredHeight = height.filter { "0123456789".contains($0) }
-//        guard let validHeightInput = Int(filteredHeight) else {
-//            return nil
-//        }
-//        self.height = validHeightInput as! Height
-        
-    
-        // Fix below to mirror above by creating 3 more filters.
-        self.height = ImperialHeight(feet: 6, inches: 2)
     }
 }
 
