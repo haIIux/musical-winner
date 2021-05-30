@@ -68,12 +68,12 @@ enum WeightGoal: Double, CaseIterable, Identifiable {
 struct UserData {
     var age: Int
     var weight: Double
-    var height: Double
+//    var height: Double
     
-    var heightFeet: String?
-    var heightInches: String?
+    var heightFeet: Double
+    var heightInches: Double
     
-    init?(age: String, weight: String, height: String) {
+    init?(age: String, weight: String, heightInches: String, heightFeet: String) {
         
         let filteredAge = age.filter { "0123456789".contains($0) }
         guard let validAgeInput = Int(filteredAge) else {
@@ -86,13 +86,24 @@ struct UserData {
             return nil
         }
         self.weight = validWeightInput
-            
-        let filteredHeight = height.filter { "0123456789".contains($0) }
-        guard let validHeight = Double(filteredHeight) else {
+//
+//        let filteredHeight = height.filter { "0123456789".contains($0) }
+//        guard let validHeight = Double(filteredHeight) else {
+//            return nil
+//        }
+//        self.height = validHeight
+        
+        let filteredFeet = heightFeet.filter { "0123456789".contains($0) }
+        guard let validFeet = Double(filteredFeet) else {
             return nil
         }
-        self.height = validHeight
+        self.heightFeet = validFeet
         
+        let filteredInches = heightInches.filter { "0123456789".contains($0) }
+        guard let validInches = Double(filteredInches) else {
+            return nil
+        }
+        self.heightInches = validInches
     }
 }
 

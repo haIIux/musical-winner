@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct CalorieSliderView: View {
-    @ObservedObject var dataModel = UserDataViewModel()
-    
+    @ObservedObject var dataModel: UserDataViewModel
+    @State var selection = 2
     var body: some View {
-            Text("Hi")
+        let dailyCalories = dataModel.calculateBMR()
+        VStack {
+            Text("Calories:  \(String(format: "%.0f", dailyCalories))")
+        
+        }
     }
 }
 
 struct CalorieSliderView_Previews: PreviewProvider {
     static var previews: some View {
-        CalorieSliderView()
+        CalorieSliderView(dataModel: UserDataViewModel())
     }
 }

@@ -18,25 +18,92 @@ class UserDataViewModel: ObservableObject {
     @Published var activityLevel: ActivityLevelSelector = ActivityLevelSelector.moderatelyActive
     
     @State var dailyCalories: Double = 0.0
+    @State var age: Double = 0.0
+    @State var weight: Double = 0.0
+    @State var heightFeet: Double = 0.0
+    @State var heightInches: Double = 0.0
     
     
-    func convertImperialHeightToCM() -> Double {
-        let convertFeetToInches = Double((userData?.heightFeet)!)! * 12
-        let addCurrentInches = convertFeetToInches + Double((userData?.heightInches)!)!
-        let returnCentimeters = addCurrentInches * 2.54
+    // Try Measurements?
+    @State var height = 0
+    func calculateBMR() -> Double {
+        let userHeightInput = convertImperialHeightToCM()
+        let userWeightInput = convertImperialWeight()
+        let userAgeInput = (userData?.age)!
         
-        return returnCentimeters
+        
+        switch gender {
+        case .male:
+            let stepOne = userWeightInput * 10
+            let stepTwo = userHeightInput * 6.25
+            let stepThree = userAgeInput * 5
+            let stepFour = Int(stepOne + stepTwo) - stepThree + 5
+            let stepFive = Double(stepFour) - goal.rawValue
+            
+            return stepFive
+        case .female:
+            let stepOne = userWeightInput * 10
+            let stepTwo = userHeightInput * 6.25
+            let stepThree = Double(userAgeInput) * 5
+            let stepFour = stepOne + stepTwo - stepThree - 161
+            
+            return stepFour
+        }
+    }
+    
+//    func recommendedDailyCaloriesWithSelectionsMade() -> Double {
+//        let userCalories = calculateBMR()
+//        let selectedGoal = goal.rawValue
+//        let activityLevel = activityLevel.rawValue
+//        
+//        switch gender {
+//        case .male:
+//            if goal.description.contains("Mild Weight Gain") {
+//                
+//                func mildGainGoalSelectedActivityMath() -> Double {
+//                    let updatedBMR = userCalories * activityLevel
+//                    return updatedBMR
+//                }
+//                
+//                func mildGainGoalSelectedMath() -> Double {
+//                    let updatedBMR = mildGainGoalSelectedActivityMath()
+//                    let goalSelectionMath = updatedBMR * selectedGoal
+//                    return goalSelectionMath
+//                }
+//                
+//                func mildGainUpdateBMR() -> Double {
+//                    
+//                }
+//            }
+//            //
+//        }
+//        
+//        return 0.0
+//    }
+//    
+    func convertImperialHeightToCM() -> Double {
+        
+        let convertFeetToCm = Measurement(value: userData!.heightFeet, unit: UnitLength.feet)
+            .converted(to: UnitLength.centimeters)
+        
+        let convertInchesToCm = Measurement(value: userData!.heightInches, unit: UnitLength.inches)
+            .converted(to: UnitLength.centimeters)
+        
+        let addUpCentimeters = convertFeetToCm + convertInchesToCm
+        
+        return addUpCentimeters.value
     }
     
     func convertImperialWeight() -> Double {
-        let imperialConversion = userData!.weight / 2.2046
-        return imperialConversion
+        let usersPounds = Measurement(value: userData!.weight, unit: UnitMass.pounds)
+            .converted(to: UnitMass.kilograms)
+        return usersPounds.value
     }
     
     func calculateMaleBMR() -> Double {
         let userHeightInput = convertImperialHeightToCM()
         let userWeightInput = convertImperialWeight()
-        let userAgeInput = (userData?.age)!
+        let userAgeInput = (userData!.age)
         
         let stepOne = userWeightInput * 10
         let stepTwo = userHeightInput * 6.25
@@ -45,13 +112,13 @@ class UserDataViewModel: ObservableObject {
         let stepFive = Double(stepFour) - goal.rawValue
         
         return stepFive
-    
+        
     }
     
     func calculateFemaleBMR() -> Double {
         let userHeightInput = convertImperialHeightToCM()
         let userWeightInput = convertImperialWeight()
-        let userAgeInput = (userData?.age)!
+        let userAgeInput = (userData!.age)
         
         let stepOne = userWeightInput * 10
         let stepTwo = userHeightInput * 6.25
@@ -60,7 +127,7 @@ class UserDataViewModel: ObservableObject {
         
         return stepFour
     }
-
+    
     func calculateCarbohydrates() -> Double {
         let defaultCarbohydrateMultiplyer: Double = 0.50
         let dailyCalories = calculateMaleBMR()

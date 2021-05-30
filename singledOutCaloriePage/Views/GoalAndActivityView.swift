@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-// Current data model setup will cause issues as it takes a new "picture" or crates a new "state", wiping the other input.
-
 struct GoalAndActivityView: View {
-    @ObservedObject var dataModel = UserDataViewModel()
+    @ObservedObject var dataModel: UserDataViewModel
     @State var selection = 1
+    
     var body: some View {
         VStack {
+            Spacer()
             Text("Please select your activity level.")
             Picker("Activity Level", selection: $dataModel.activityLevel) {
                 ForEach(ActivityLevelSelector.allCases, id: \.self) {
@@ -26,12 +26,26 @@ struct GoalAndActivityView: View {
                     Text($0.description.capitalized)
                 }
             }
+            Divider()
+                .padding()
+            Text("Once you have made your selections, click the button below.")
+            Button(action: {
+                if selection == 1 {
+                    withAnimation { selection = 2 }
+                }
+            }, label: {
+                HStack {
+                    Text("Calculate")
+                    Image(systemName: "arrow.right")
+                }
+            })
+            Spacer()
         }
     }
 }
 
 struct GoalAndActivityView_Previews: PreviewProvider {
     static var previews: some View {
-        GoalAndActivityView()
+        GoalAndActivityView(dataModel: UserDataViewModel())
     }
 }
