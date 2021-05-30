@@ -70,6 +70,9 @@ struct UserData {
     var weight: Double
     var height: Double
     
+    var heightFeet: String?
+    var heightInches: String?
+    
     init?(age: String, weight: String, height: String) {
         
         let filteredAge = age.filter { "0123456789".contains($0) }
@@ -77,7 +80,6 @@ struct UserData {
             return nil
         }
         self.age = validAgeInput
-        
         
         let filteredWeight = weight.filter { "0123456789".contains($0) }
         guard let validWeightInput = Double(filteredWeight) else {

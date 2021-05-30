@@ -17,80 +17,74 @@ class UserDataViewModel: ObservableObject {
     @Published var gender: GenderPickerSelector = GenderPickerSelector.male
     @Published var activityLevel: ActivityLevelSelector = ActivityLevelSelector.moderatelyActive
     
-    /*
-     
-     Fuck me eh? Rewrite the functions for converting height and all that bullshit becuase, well fuck me eh?
-     
-     */
- 
+    @State var dailyCalories: Double = 0.0
     
-//    func maleBMR() -> Double {
-//
-//        let userHeightInput = ImperialWeight.init(pounds: userData?.weight!)
-//        let userWeightInput = userData?.weight
-//        guard let userAgeInput = userData?.age else { return 0.0 }
-//
-//
-//
-//        let stepOne = 10 * userWeightInput         // weightConversionFunction
-//        let stepTwo = 6.25 * Double(userData.height  )          // heightConversionFunction
-//        let stepThree = 5 * userAgeInput                    // Age in Years.
-//        let stepFour = stepOne + stepTwo - stepThree + 5
-//        let stepFive = stepFour - goal.rawValue
-//
-//        return Double(stepFive)
-//    }
-//
-//    func femaleBMR() -> Double {
-//        let heightConversionFunction = ConvertHeight()
-//        let weightConversionFunction = convertPoundsToKg()
-//
-//        let stepOne = 10 * weightConversionFunction
-//        let stepTwo = 6.25 * heightConversionFunction
-//        let stepThree = 5 * Double(ageInput)! // Age in Years.
-//        let stepFour = stepOne + stepTwo - stepThree - 161
-//
-//        return Double(stepFour)
-//    }
-//
-//    func carbohydrateMath() -> Double {
-//        let defaultCarbohydratesValue: Double = 0.50
-//        let getCarbCalories = dailyCalories * defaultCarbohydratesValue
-//        let getCarbMacros = getCarbCalories / 4
-//
-//        return getCarbMacros
-//    }
-//
-//    func fatMath() -> Double {
-//        let defaultFatValue: Double = 0.25
-//        let getFatCalories = dailyCalories * defaultFatValue
-//        let getFatMacros = getFatCalories / 9
-//
-//        return getFatMacros
-//    }
-//
-//    func proteinMath() -> Double {
-//        let defaultProteinValue: Double = 0.25
-//        let getProteinCalories = dailyCalories * defaultProteinValue
-//        let getProteinMacros = getProteinCalories / 4
-//
-//        return getProteinMacros
-//    }
+    
+    func convertImperialHeightToCM() -> Double {
+        let convertFeetToInches = Double((userData?.heightFeet)!)! * 12
+        let addCurrentInches = convertFeetToInches + Double((userData?.heightInches)!)!
+        let returnCentimeters = addCurrentInches * 2.54
+        
+        return returnCentimeters
+    }
+    
+    func convertImperialWeight() -> Double {
+        let imperialConversion = userData!.weight / 2.2046
+        return imperialConversion
+    }
+    
+    func calculateMaleBMR() -> Double {
+        let userHeightInput = convertImperialHeightToCM()
+        let userWeightInput = convertImperialWeight()
+        let userAgeInput = (userData?.age)!
+        
+        let stepOne = userWeightInput * 10
+        let stepTwo = userHeightInput * 6.25
+        let stepThree = userAgeInput * 5
+        let stepFour = Int(stepOne + stepTwo) - stepThree + 5
+        let stepFive = Double(stepFour) - goal.rawValue
+        
+        return stepFive
+    
+    }
+    
+    func calculateFemaleBMR() -> Double {
+        let userHeightInput = convertImperialHeightToCM()
+        let userWeightInput = convertImperialWeight()
+        let userAgeInput = (userData?.age)!
+        
+        let stepOne = userWeightInput * 10
+        let stepTwo = userHeightInput * 6.25
+        let stepThree = Double(userAgeInput) * 5
+        let stepFour = stepOne + stepTwo - stepThree - 161
+        
+        return stepFour
+    }
+
+    func calculateCarbohydrates() -> Double {
+        let defaultCarbohydrateMultiplyer: Double = 0.50
+        let dailyCalories = calculateMaleBMR()
+        let getCarbCalories = dailyCalories * defaultCarbohydrateMultiplyer
+        let getCarbMacros = getCarbCalories / 4
+        return getCarbMacros
+    }
+    
+    func calculateFat() -> Double {
+        let defaultFatMultiplyer: Double = 0.25
+        let getFatCalories = dailyCalories * defaultFatMultiplyer
+        let getFatMacros = getFatCalories / 9
+        return getFatMacros
+    }
+    
+    func calculateProtein() -> Double {
+        let defaultProtienMultiplyer: Double = 0.25
+        let getProteinCalories = dailyCalories * defaultProtienMultiplyer
+        let getProteinMacros = getProteinCalories / 4
+        return getProteinMacros
+    }
 }
 
-// Use the View Model to get the input from the UserMetricView TextFields, then parse the data and let the view call for it.
 
-//struct DisplayTextFieldData {
-//    // Access the class here, then get the data from it. Then on the View we will call the data from THIS... figure out how to fix the error below.
-//    let userDataAccess = UserDataViewModel()
-//    var body: some View {
-//        if let age = userDataAccess.userData.age {
-//            Text("User Age: \(age)")
-//        } else {
-//            Text("User Age Unknown")
-//        }
-//    }
-//}
 
 
 /*

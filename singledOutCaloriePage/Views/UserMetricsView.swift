@@ -22,6 +22,7 @@ struct UserMetricsView: View {
     @State var weight = ""
     @State var heightInches = ""
     @State var heightFeet = ""
+    @State var height = ""
     
     @Binding var selection: Int
     var body: some View {
@@ -54,7 +55,7 @@ struct UserMetricsView: View {
                 .padding()
             Text("Data in Models from View Models").font(.headline).padding(.bottom)
             Button("Next") {
-                if let data = UserData(age: age, weight: weight, heightFeet: heightFeet, heightInches: heightInches ) {
+                if let data = UserData(age: age, weight: weight, height: height ) {
                     dataModel.userData = data
                     if selection == 0 {
                         withAnimation { selection = 1 }
