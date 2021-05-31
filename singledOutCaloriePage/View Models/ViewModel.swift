@@ -54,61 +54,91 @@ class UserDataViewModel: ObservableObject {
     // MARK: - Male Math
     var mildGainGoalSelectedActivityMathMale: Double {
         maleBMR * activityLevel.rawValue
-    }
+    } //
     var mildGainGoalSelectedMathMale: Double {
         mildGainGoalSelectedActivityMathMale * goal.rawValue
-    }
+    } //
     var mildGainMathFinalMale: Double {
         mildGainGoalSelectedActivityMathMale + mildGainGoalSelectedMathMale
-    }
-    
+    } //
     var moderateGainGoalSelectedActivityMathMale: Double {
         maleBMR * activityLevel.rawValue
-    }
+    } 
     var moderateGainGoalSelectedMathMale: Double {
         moderateGainGoalSelectedActivityMathMale * goal.rawValue
     }
     var moderateGainMathFinalMale: Double {
         moderateGainGoalSelectedActivityMathMale + moderateGainGoalSelectedMathMale
     }
-
     var mildLossSelectedActivityMale: Double {
         maleBMR * activityLevel.rawValue
     }
-    
     var mildLossSelectedGoalMale: Double {
         mildLossSelectedActivityMale * goal.rawValue
     }
-    
     var mildLossFinalMathMale: Double {
        mildLossSelectedActivityMale - mildLossSelectedGoalMale
     }
-    
     var moderateLossSelectedActivityMale: Double {
         maleBMR * activityLevel.rawValue
     }
-    
     var moderateLossSelectedGoalMale: Double {
         moderateLossSelectedActivityMale * goal.rawValue
     }
-    
     var moderateLossFinalMathMale: Double {
         moderateLossSelectedActivityMale - moderateLossSelectedGoalMale
     }
-    
     var maintainWeightActivityMale: Double {
         maleBMR * activityLevel.rawValue
     }
-    
     var maintainWeightFinalMathMale: Double {
         maintainWeightActivityMale + maleBMR
     }
     
     // MARK: - Female Math
     
-    
-    
-    
+    var mildGainGoalSelectedActivityMathFemale: Double {
+        
+    }
+    var mildGainGoalSelectedMathFemale: Double {
+        
+    }
+    var mildGainMathFinalFemale: Double {
+        
+    }
+    var moderateGainGoalSelectedActivityMathFemale: Double {
+        
+    }
+    var moderateGainGoalSelectedMathFemale: Double {
+        
+    }
+    var moderateGainMathFinalFemale: Double {
+        
+    }
+    var mildLossSelectedActivityFemale: Double {
+        
+    }
+    var mildLossSelectedGoalFemale: Double {
+        
+    }
+    var mildLossFinalMathFemale: Double {
+        
+    }
+    var moderateLossSelectedActivityFemale: Double {
+        
+    }
+    var moderateLossSelectedGoalFemale: Double {
+        
+    }
+    var moderateLossFinalMathFemale: Double {
+        
+    }
+    var maintainWeightActivityFemale: Double {
+        
+    }
+    var maintainWeightFinalMathFemale: Double {
+        
+    }
     var convertImperialHeight: Double {
          Measurement(value: userData!.heightFeet, unit: UnitLength.feet)
             .converted(to: UnitLength.centimeters)
