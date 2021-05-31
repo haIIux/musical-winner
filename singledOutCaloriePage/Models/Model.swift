@@ -39,6 +39,8 @@ enum ActivityLevelSelector: Double, CaseIterable {
     }
 }
 
+
+
 enum WeightGoal: Double, CaseIterable, Identifiable {
     var id: RawValue { rawValue }
     

@@ -30,8 +30,10 @@ struct GoalAndActivityView: View {
                 .padding()
             Text("Once you have made your selections, click the button below.")
             Button(action: {
+                print(dataModel.mildGainMathFinalMale)
                 if selection == 1 {
                     withAnimation { selection = 2 }
+                    
                 }
             }, label: {
                 HStack {

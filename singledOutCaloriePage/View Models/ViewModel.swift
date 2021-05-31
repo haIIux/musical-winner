@@ -26,132 +26,227 @@ class UserDataViewModel: ObservableObject {
     
     // Try Measurements?
     @State var height = 0
-    func calculateBMR() -> Double {
-        let userHeightInput = convertImperialHeightToCM()
-        let userWeightInput = convertImperialWeight()
-        let userAgeInput = (userData?.age)!
-        
+    
+
+    
+    func recommendedDailyCaloriesWithSelectionsMade() -> Double {
         
         switch gender {
         case .male:
-            let stepOne = userWeightInput * 10
-            let stepTwo = userHeightInput * 6.25
-            let stepThree = userAgeInput * 5
-            let stepFour = Int(stepOne + stepTwo) - stepThree + 5
-            let stepFive = Double(stepFour) - goal.rawValue
-            
-            return stepFive
+            if goal.description.contains("Mild Weight Gain") {
+                print("Mild Gain Male :", mildGainMathFinalMale)
+            } else if goal.description.contains("Moderate Weight Gain"){
+                print("Moderate Gain Male :", moderateGainMathFinalMale)
+            } else if goal.description.contains("Mild Weight Loss") {
+                print("Mild Loss Male :", mildLossFinalMathMale)
+            } else if goal.description.contains("Moderate Weight Loss") {
+                print("Moderate Loss Male :", moderateLossFinalMathMale)
+            } else if goal.description.contains("Maintain Weight") {
+                print("Maintain Weight Male :", maintainWeightFinalMathMale)
+            }
         case .female:
-            let stepOne = userWeightInput * 10
-            let stepTwo = userHeightInput * 6.25
-            let stepThree = Double(userAgeInput) * 5
-            let stepFour = stepOne + stepTwo - stepThree - 161
-            
-            return stepFour
+            print("Female!")
         }
+        
+        return 0.0
     }
     
-//    func recommendedDailyCaloriesWithSelectionsMade() -> Double {
-//        let userCalories = calculateBMR()
-//        let selectedGoal = goal.rawValue
-//        let activityLevel = activityLevel.rawValue
-//        
-//        switch gender {
-//        case .male:
-//            if goal.description.contains("Mild Weight Gain") {
-//                
-//                func mildGainGoalSelectedActivityMath() -> Double {
-//                    let updatedBMR = userCalories * activityLevel
-//                    return updatedBMR
-//                }
-//                
-//                func mildGainGoalSelectedMath() -> Double {
-//                    let updatedBMR = mildGainGoalSelectedActivityMath()
-//                    let goalSelectionMath = updatedBMR * selectedGoal
-//                    return goalSelectionMath
-//                }
-//                
-//                func mildGainUpdateBMR() -> Double {
-//                    
-//                }
-//            }
-//            //
-//        }
-//        
-//        return 0.0
-//    }
-//    
-    func convertImperialHeightToCM() -> Double {
-        
-        let convertFeetToCm = Measurement(value: userData!.heightFeet, unit: UnitLength.feet)
-            .converted(to: UnitLength.centimeters)
-        
-        let convertInchesToCm = Measurement(value: userData!.heightInches, unit: UnitLength.inches)
-            .converted(to: UnitLength.centimeters)
-        
-        let addUpCentimeters = convertFeetToCm + convertInchesToCm
-        
-        return addUpCentimeters.value
+    // MARK: - Male Math
+    var mildGainGoalSelectedActivityMathMale: Double {
+        maleBMR * activityLevel.rawValue
+    }
+    var mildGainGoalSelectedMathMale: Double {
+        mildGainGoalSelectedActivityMathMale * goal.rawValue
+    }
+    var mildGainMathFinalMale: Double {
+        mildGainGoalSelectedActivityMathMale + mildGainGoalSelectedMathMale
     }
     
-    func convertImperialWeight() -> Double {
-        let usersPounds = Measurement(value: userData!.weight, unit: UnitMass.pounds)
+    var moderateGainGoalSelectedActivityMathMale: Double {
+        maleBMR * activityLevel.rawValue
+    }
+    var moderateGainGoalSelectedMathMale: Double {
+        moderateGainGoalSelectedActivityMathMale * goal.rawValue
+    }
+    var moderateGainMathFinalMale: Double {
+        moderateGainGoalSelectedActivityMathMale + moderateGainGoalSelectedMathMale
+    }
+
+    var mildLossSelectedActivityMale: Double {
+        maleBMR * activityLevel.rawValue
+    }
+    
+    var mildLossSelectedGoalMale: Double {
+        mildLossSelectedActivityMale * goal.rawValue
+    }
+    
+    var mildLossFinalMathMale: Double {
+       mildLossSelectedActivityMale - mildLossSelectedGoalMale
+    }
+    
+    var moderateLossSelectedActivityMale: Double {
+        maleBMR * activityLevel.rawValue
+    }
+    
+    var moderateLossSelectedGoalMale: Double {
+        moderateLossSelectedActivityMale * goal.rawValue
+    }
+    
+    var moderateLossFinalMathMale: Double {
+        moderateLossSelectedActivityMale - moderateLossSelectedGoalMale
+    }
+    
+    var maintainWeightActivityMale: Double {
+        maleBMR * activityLevel.rawValue
+    }
+    
+    var maintainWeightFinalMathMale: Double {
+        maintainWeightActivityMale + maleBMR
+    }
+    
+    // MARK: - Female Math
+    
+    
+    
+    
+    var convertImperialHeight: Double {
+         Measurement(value: userData!.heightFeet, unit: UnitLength.feet)
+            .converted(to: UnitLength.centimeters)
+            .value
+         + Measurement(value: userData!.heightInches, unit: UnitLength.inches)
+            .converted(to: UnitLength.centimeters)
+            .value
+    }
+    
+    var convertImperialWeight: Double {
+        Measurement(value: userData!.weight, unit: UnitMass.pounds)
             .converted(to: UnitMass.kilograms)
-        return usersPounds.value
+            .value
     }
     
-    func calculateMaleBMR() -> Double {
-        let userHeightInput = convertImperialHeightToCM()
-        let userWeightInput = convertImperialWeight()
-        let userAgeInput = (userData!.age)
-        
-        let stepOne = userWeightInput * 10
-        let stepTwo = userHeightInput * 6.25
-        let stepThree = userAgeInput * 5
+    var maleBMR: Double {
+        let stepOne = convertImperialWeight * 10
+        let stepTwo = convertImperialHeight * 6.25
+        let stepThree = userData!.age * 5
         let stepFour = Int(stepOne + stepTwo) - stepThree + 5
         let stepFive = Double(stepFour) - goal.rawValue
         
         return stepFive
-        
     }
-    
-    func calculateFemaleBMR() -> Double {
-        let userHeightInput = convertImperialHeightToCM()
-        let userWeightInput = convertImperialWeight()
-        let userAgeInput = (userData!.age)
-        
-        let stepOne = userWeightInput * 10
-        let stepTwo = userHeightInput * 6.25
-        let stepThree = Double(userAgeInput) * 5
+
+    var femaleBMR: Double {
+        let stepOne = convertImperialWeight * 10
+        let stepTwo = convertImperialHeight * 6.25
+        let stepThree = Double(userData!.age) * 5
         let stepFour = stepOne + stepTwo - stepThree - 161
         
         return stepFour
     }
-    
-    func calculateCarbohydrates() -> Double {
+
+    var carbohydrateCalculation: Double {
         let defaultCarbohydrateMultiplyer: Double = 0.50
-        let dailyCalories = calculateMaleBMR()
+        
         let getCarbCalories = dailyCalories * defaultCarbohydrateMultiplyer
-        let getCarbMacros = getCarbCalories / 4
-        return getCarbMacros
+        return getCarbCalories / 4
+        
     }
     
-    func calculateFat() -> Double {
+    var fatCalculation: Double {
         let defaultFatMultiplyer: Double = 0.25
         let getFatCalories = dailyCalories * defaultFatMultiplyer
-        let getFatMacros = getFatCalories / 9
-        return getFatMacros
+        return getFatCalories / 9
     }
-    
-    func calculateProtein() -> Double {
+        
+    var proteinCalculation: Double {
         let defaultProtienMultiplyer: Double = 0.25
         let getProteinCalories = dailyCalories * defaultProtienMultiplyer
-        let getProteinMacros = getProteinCalories / 4
-        return getProteinMacros
+        return getProteinCalories / 4
     }
 }
-
-
+//    func calculateBMR() -> Double {
+//        let userHeightInput = convertImperialHeight
+//        let userWeightInput = convertImperialWeight
+//        let userAgeInput = (userData?.age)!
+//
+//
+//        switch gender {
+//        case .male:
+//            let stepOne = userWeightInput * 10
+//            let stepTwo = userHeightInput * 6.25
+//            let stepThree = userAgeInput * 5
+//            let stepFour = Int(stepOne + stepTwo) - stepThree + 5
+//            let stepFive = Double(stepFour) - goal.rawValue
+//
+//            return stepFive
+//        case .female:
+//            let stepOne = userWeightInput * 10
+//            let stepTwo = userHeightInput * 6.25
+//            let stepThree = Double(userAgeInput) * 5
+//            let stepFour = stepOne + stepTwo - stepThree - 161
+//
+//            return stepFour
+//        }
+//    }
+//    func convertImperialHeightToCM() -> Double {
+//        let convertFeetToCm = Measurement(value: userData!.heightFeet, unit: UnitLength.feet)
+//            .converted(to: UnitLength.centimeters)
+//        let convertInchesToCm = Measurement(value: userData!.heightInches, unit: UnitLength.inches)
+//            .converted(to: UnitLength.centimeters)
+//        let addUpCentimeters = convertFeetToCm + convertInchesToCm
+//        return addUpCentimeters.value
+//    }
+//    func convertImperialWeight() -> Double {
+//        let usersPounds = Measurement(value: userData!.weight, unit: UnitMass.pounds)
+//            .converted(to: UnitMass.kilograms)
+//        return usersPounds.value
+//    }
+//
+//    func calculateMaleBMR() -> Double {
+//        let userHeightInput = convertImperialHeight
+//        let userWeightInput = convertImperialWeight
+//        let userAgeInput = (userData!.age)
+//
+//        let stepOne = userWeightInput * 10
+//        let stepTwo = userHeightInput * 6.25
+//        let stepThree = userAgeInput * 5
+//        let stepFour = Int(stepOne + stepTwo) - stepThree + 5
+//        let stepFive = Double(stepFour) - goal.rawValue
+//
+//        return stepFive
+//
+//    }
+//    func calculateProtein() -> Double {
+//        let defaultProtienMultiplyer: Double = 0.25
+//        let getProteinCalories = dailyCalories * defaultProtienMultiplyer
+//        let getProteinMacros = getProteinCalories / 4
+//        return getProteinMacros
+//    }
+//}
+//    func calculateFat() -> Double {
+//        let defaultFatMultiplyer: Double = 0.25
+//        let getFatCalories = dailyCalories * defaultFatMultiplyer
+//        let getFatMacros = getFatCalories / 9
+//        return getFatMacros
+//    }
+//    func calculateCarbohydrates() -> Double {
+//        let defaultCarbohydrateMultiplyer: Double = 0.50
+//        let getCarbCalories = dailyCalories * defaultCarbohydrateMultiplyer
+//        let getCarbMacros = getCarbCalories / 4
+//        return getCarbMacros
+//    }
+//
+//    func calculateFemaleBMR() -> Double {
+//        let userHeightInput = convertImperialHeight
+//        let userWeightInput = convertImperialWeight
+//        let userAgeInput = (userData!.age)
+//
+//        let stepOne = userWeightInput * 10
+//        let stepTwo = userHeightInput * 6.25
+//        let stepThree = Double(userAgeInput) * 5
+//        let stepFour = stepOne + stepTwo - stepThree - 161
+//
+//        return stepFour
+//    }
 
 
 /*
