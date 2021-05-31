@@ -29,26 +29,39 @@ class UserDataViewModel: ObservableObject {
     
 
     
-    func recommendedDailyCaloriesWithSelectionsMade() -> Double {
-        
+    func calculateDailyCalories() {
         switch gender {
         case .male:
             if goal.description.contains("Mild Weight Gain") {
                 print("Mild Gain Male :", mildGainMathFinalMale)
+                dailyCalories = mildGainMathFinalMale
+                print(dailyCalories)
             } else if goal.description.contains("Moderate Weight Gain"){
                 print("Moderate Gain Male :", moderateGainMathFinalMale)
+                dailyCalories = moderateGainMathFinalMale
             } else if goal.description.contains("Mild Weight Loss") {
                 print("Mild Loss Male :", mildLossFinalMathMale)
+                dailyCalories = mildLossFinalMathMale
             } else if goal.description.contains("Moderate Weight Loss") {
                 print("Moderate Loss Male :", moderateLossFinalMathMale)
+                dailyCalories = moderateLossFinalMathMale
             } else if goal.description.contains("Maintain Weight") {
-                print("Maintain Weight Male :", maintainWeightFinalMathMale)
+                print("Maintain Weight Male :", maintainWeightActivityMaleFinal)
+                dailyCalories = maintainWeightActivityMaleFinal
             }
         case .female:
-            print("Female!")
+            if goal.description.contains("Mild Weight Gain") {
+                print("Mild Gain Female :", mildGainMathFinalFemale)
+            } else if goal.description.contains("Moderate Weight Gain"){
+                print("Moderate Gain Female :", moderateGainMathFinalFemale)
+            } else if goal.description.contains("Mild Weight Loss") {
+                print("Mild Loss Female :", mildLossFinalMathFemale)
+            } else if goal.description.contains("Moderate Weight Loss") {
+                print("Moderate Loss Female :", moderateLossFinalMathFemale)
+            } else if goal.description.contains("Maintain Weight") {
+                print("Maintain Weight Female :", maintainWeightActivityFemaleFinal)
+            }
         }
-        
-        return 0.0
     }
     
     // MARK: - Male Math
@@ -88,57 +101,59 @@ class UserDataViewModel: ObservableObject {
     var moderateLossFinalMathMale: Double {
         moderateLossSelectedActivityMale - moderateLossSelectedGoalMale
     }
-    var maintainWeightActivityMale: Double {
+    var maintainWeightActivityMaleFinal: Double {
         maleBMR * activityLevel.rawValue
     }
-    var maintainWeightFinalMathMale: Double {
-        maintainWeightActivityMale + maleBMR
-    }
+//    var maintainWeightFinalMathMale: Double {
+//        maintainWeightActivityMale + maleBMR
+//    }
     
     // MARK: - Female Math
     
     var mildGainGoalSelectedActivityMathFemale: Double {
-        
+        femaleBMR * activityLevel.rawValue
     }
     var mildGainGoalSelectedMathFemale: Double {
-        
+        mildGainGoalSelectedActivityMathFemale * goal.rawValue
     }
     var mildGainMathFinalFemale: Double {
-        
+        mildGainGoalSelectedActivityMathFemale + mildGainGoalSelectedMathFemale
     }
     var moderateGainGoalSelectedActivityMathFemale: Double {
-        
+        femaleBMR * activityLevel.rawValue
     }
     var moderateGainGoalSelectedMathFemale: Double {
-        
+        moderateGainGoalSelectedActivityMathFemale * goal.rawValue
     }
     var moderateGainMathFinalFemale: Double {
-        
+        moderateGainGoalSelectedActivityMathFemale + moderateGainGoalSelectedMathFemale
     }
     var mildLossSelectedActivityFemale: Double {
-        
+        femaleBMR * activityLevel.rawValue
     }
     var mildLossSelectedGoalFemale: Double {
-        
+        mildLossSelectedActivityFemale * goal.rawValue
     }
     var mildLossFinalMathFemale: Double {
-        
+        mildLossSelectedActivityFemale - mildLossSelectedGoalFemale
     }
     var moderateLossSelectedActivityFemale: Double {
-        
+        femaleBMR * activityLevel.rawValue
     }
     var moderateLossSelectedGoalFemale: Double {
-        
+        moderateLossSelectedActivityFemale * goal.rawValue
     }
     var moderateLossFinalMathFemale: Double {
-        
+        moderateLossSelectedActivityFemale - moderateLossSelectedGoalFemale
     }
-    var maintainWeightActivityFemale: Double {
-        
+    var maintainWeightActivityFemaleFinal: Double {
+        femaleBMR * activityLevel.rawValue
+
     }
-    var maintainWeightFinalMathFemale: Double {
-        
-    }
+//    var maintainWeightFinalMathFemale: Double {
+//        maintainWeightActivityFemale + femaleBMR
+//    }
+    
     var convertImperialHeight: Double {
          Measurement(value: userData!.heightFeet, unit: UnitLength.feet)
             .converted(to: UnitLength.centimeters)
