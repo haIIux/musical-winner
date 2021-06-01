@@ -11,9 +11,9 @@ struct CalorieSliderView: View {
     @ObservedObject var dataModel: UserDataViewModel
     @State var selection = 2
     var body: some View {
-        let dailyCalories = dataModel.calculateDailyCalories()
+        let dailyCalories = dataModel.calculateDailyCalories
         VStack {
-            Text("Calories:  \(String(format: "%.0f", ))")
+            Text("Calories:  \(String(format: "%.0f", dailyCalories))")
 
         }
     }

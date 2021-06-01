@@ -29,7 +29,7 @@ class UserDataViewModel: ObservableObject {
     
 
     
-    func calculateDailyCalories() {
+    var calculateDailyCalories: Double {
         switch gender {
         case .male:
             if goal.description.contains("Mild Weight Gain") {
@@ -62,6 +62,7 @@ class UserDataViewModel: ObservableObject {
                 print("Maintain Weight Female :", maintainWeightActivityFemaleFinal)
             }
         }
+        return dailyCalories
     }
     
     // MARK: - Male Math
