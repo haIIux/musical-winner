@@ -16,7 +16,18 @@
 		B2E20A2E265C7920001CC748 /* singledOutCaloriePageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E20A2D265C7920001CC748 /* singledOutCaloriePageApp.swift */; };
 		B2E20A32265C7922001CC748 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2E20A31265C7922001CC748 /* Assets.xcassets */; };
 		B2E20A35265C7922001CC748 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2E20A34265C7922001CC748 /* Preview Assets.xcassets */; };
+		B2FFAC99266714F600A34915 /* singledOutCaloriePageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FFAC98266714F600A34915 /* singledOutCaloriePageTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B2FFAC9B266714F600A34915 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2E20A22265C7920001CC748 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B2E20A29265C7920001CC748;
+			remoteInfo = singledOutCaloriePage;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B27A9631265EFAB6001C22D6 /* UserMetricsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMetricsView.swift; sourceTree = "<group>"; };
@@ -30,10 +41,20 @@
 		B2E20A31265C7922001CC748 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2E20A34265C7922001CC748 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B2E20A36265C7922001CC748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2FFAC96266714F600A34915 /* singledOutCaloriePageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = singledOutCaloriePageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2FFAC98266714F600A34915 /* singledOutCaloriePageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = singledOutCaloriePageTests.swift; sourceTree = "<group>"; };
+		B2FFAC9A266714F600A34915 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B2E20A27265C7920001CC748 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2FFAC93266714F600A34915 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -74,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				B2E20A2C265C7920001CC748 /* singledOutCaloriePage */,
+				B2FFAC97266714F600A34915 /* singledOutCaloriePageTests */,
 				B2E20A2B265C7920001CC748 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -82,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				B2E20A2A265C7920001CC748 /* singledOutCaloriePage.app */,
+				B2FFAC96266714F600A34915 /* singledOutCaloriePageTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,6 +131,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		B2FFAC97266714F600A34915 /* singledOutCaloriePageTests */ = {
+			isa = PBXGroup;
+			children = (
+				B2FFAC98266714F600A34915 /* singledOutCaloriePageTests.swift */,
+				B2FFAC9A266714F600A34915 /* Info.plist */,
+			);
+			path = singledOutCaloriePageTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -128,6 +160,24 @@
 			productReference = B2E20A2A265C7920001CC748 /* singledOutCaloriePage.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B2FFAC95266714F600A34915 /* singledOutCaloriePageTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B2FFAC9F266714F600A34915 /* Build configuration list for PBXNativeTarget "singledOutCaloriePageTests" */;
+			buildPhases = (
+				B2FFAC92266714F600A34915 /* Sources */,
+				B2FFAC93266714F600A34915 /* Frameworks */,
+				B2FFAC94266714F600A34915 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B2FFAC9C266714F600A34915 /* PBXTargetDependency */,
+			);
+			name = singledOutCaloriePageTests;
+			productName = singledOutCaloriePageTests;
+			productReference = B2FFAC96266714F600A34915 /* singledOutCaloriePageTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -139,6 +189,10 @@
 				TargetAttributes = {
 					B2E20A29265C7920001CC748 = {
 						CreatedOnToolsVersion = 12.5;
+					};
+					B2FFAC95266714F600A34915 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = B2E20A29265C7920001CC748;
 					};
 				};
 			};
@@ -156,6 +210,7 @@
 			projectRoot = "";
 			targets = (
 				B2E20A29265C7920001CC748 /* singledOutCaloriePage */,
+				B2FFAC95266714F600A34915 /* singledOutCaloriePageTests */,
 			);
 		};
 /* End PBXProject section */
@@ -167,6 +222,13 @@
 			files = (
 				B2E20A35265C7922001CC748 /* Preview Assets.xcassets in Resources */,
 				B2E20A32265C7922001CC748 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2FFAC94266714F600A34915 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,7 +249,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B2FFAC92266714F600A34915 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2FFAC99266714F600A34915 /* singledOutCaloriePageTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B2FFAC9C266714F600A34915 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B2E20A29265C7920001CC748 /* singledOutCaloriePage */;
+			targetProxy = B2FFAC9B266714F600A34915 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B2E20A37265C7922001CC748 /* Debug */ = {
@@ -350,6 +428,46 @@
 			};
 			name = Release;
 		};
+		B2FFAC9D266714F600A34915 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 34N89Y6GQ8;
+				INFOPLIST_FILE = singledOutCaloriePageTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.halluxdev.singledOutCaloriePageTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/singledOutCaloriePage.app/singledOutCaloriePage";
+			};
+			name = Debug;
+		};
+		B2FFAC9E266714F600A34915 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 34N89Y6GQ8;
+				INFOPLIST_FILE = singledOutCaloriePageTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.halluxdev.singledOutCaloriePageTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/singledOutCaloriePage.app/singledOutCaloriePage";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -367,6 +485,15 @@
 			buildConfigurations = (
 				B2E20A3A265C7922001CC748 /* Debug */,
 				B2E20A3B265C7922001CC748 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B2FFAC9F266714F600A34915 /* Build configuration list for PBXNativeTarget "singledOutCaloriePageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2FFAC9D266714F600A34915 /* Debug */,
+				B2FFAC9E266714F600A34915 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

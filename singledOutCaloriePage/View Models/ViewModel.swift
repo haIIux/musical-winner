@@ -13,6 +13,7 @@ class UserDataViewModel: ObservableObject {
     @Published var userData: UserData?
     @Published var calculationData: CalculationData = CalculationData()
     
+    
     @Published var goal: WeightGoal = WeightGoal.maintainWeight
     @Published var gender: GenderPickerSelector = GenderPickerSelector.male
     @Published var activityLevel: ActivityLevelSelector = ActivityLevelSelector.moderatelyActive
@@ -23,11 +24,6 @@ class UserDataViewModel: ObservableObject {
     @State var heightFeet: Double = 0.0
     @State var heightInches: Double = 0.0
     
-    
-    // Try Measurements?
-    @State var height = 0
-    
-
     
     var calculateDailyCalories: Double {
         switch gender {
