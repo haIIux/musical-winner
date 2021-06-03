@@ -23,9 +23,9 @@ class UserDataViewModel: ObservableObject {
     @Published var fatsOutputText: Double = 0.0
     @Published var proteinOutputText: Double = 0.0
     
-    @Published var carbohydrateSlider = 50.0
-    @Published var fatsSlider = 25.0
-    @Published var proteinSlider = 25.0
+    @Published var carbohydrateSlider: Double = 50.0
+    @Published var fatsSlider: Double = 25.0
+    @Published var proteinSlider: Double = 25.0
     
     @State var age: Double = 0.0
     @State var weight: Double = 0.0

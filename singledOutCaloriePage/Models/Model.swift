@@ -113,10 +113,9 @@ struct UserData {
 struct CalculationData {
     var showAlert = false
     
-    var dailyCalories: Double = 2000.0
-    var carbohydrateSlider = 50.0
-    var fatsSlider = 25.0
-    var proteinSlider = 25.0
+    @Binding var carbohydrateSlider: Double
+    @Binding var fatsSlider: Double
+    @Binding var proteinSlider: Double 
     
     var defaultCarbohydrateValue: Double = 0.50
     var defaultFatValue: Double = 0.25
