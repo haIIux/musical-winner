@@ -10,17 +10,41 @@ import SwiftUI
 struct CalorieSliderView: View {
     @ObservedObject var dataModel: UserDataViewModel
     @State var selection = 2
-    var body: some View {
-        let dailyCalories = dataModel.calculateDailyCalories
-        VStack {
-            Text("Calories:  \(String(format: "%.0f", dailyCalories))")
+    
 
+    var body: some View {
+//        var dailyCalories = dataModel.calculateDailyCalories
+//        let allBindings = [
+//            dataModel.$carbohydrateSlider,
+//            dataModel.$fatsSlider,
+//            dataModel.$proteinSlider
+//        ]
+
+        VStack {
+            Text("Calories:  \(String(format: "%.0f", dataModel.dailyCalories))")
+            HStack {
+                VStack {
+                    Text("Carbohydrates")
+                    Text("\(String(format: "%.0f", dataModel.carbohydrateCalculation))")
+                }
+                VStack {
+                    Text("Fats")
+                    Text("\(String(format: "%.0f", dataModel.fatCalculation))")
+                }
+                VStack {
+                    Text("Protein")
+                    Text("\(String(format: "%.0f", dataModel.proteinCalculation))")
+                }
+            }
+//            dataModel.synchronizedSlider(from: allBindings, index: 0)
+//            dataModel.synchronizedSlider(from: allBindings, index: 1)
+//            dataModel.synchronizedSlider(from: allBindings, index: 2)
         }
     }
 }
 
-struct CalorieSliderView_Previews: PreviewProvider {
-    static var previews: some View {
-        CalorieSliderView(dataModel: UserDataViewModel())
-    }
-}
+//struct CalorieSliderView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CalorieSliderView(dataModel: UserDataViewModel())
+//    }
+//}

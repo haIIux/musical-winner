@@ -31,8 +31,8 @@ struct GoalAndActivityView: View {
             Text("Once you have made your selections, click the button below.")
             Button(action: {
                 if selection == 1 {
-                    withAnimation { selection = 2 }
-                    
+                    selection = 2
+                    dataModel.dailyCalories = dataModel.calculateDailyCalories
                 }
             }, label: {
                 HStack {

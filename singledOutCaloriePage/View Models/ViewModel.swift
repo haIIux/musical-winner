@@ -11,19 +11,28 @@ import SwiftUI
 class UserDataViewModel: ObservableObject {
     
     @Published var userData: UserData?
-    @Published var calculationData: CalculationData = CalculationData()
+    @Published var calculationData: CalculationData?
     
     
     @Published var goal: WeightGoal = WeightGoal.maintainWeight
     @Published var gender: GenderPickerSelector = GenderPickerSelector.male
     @Published var activityLevel: ActivityLevelSelector = ActivityLevelSelector.moderatelyActive
     
-    @State var dailyCalories: Double = 0.0
+    @Published var dailyCalories: Double = 0.0
+    @Published var carbsOutputText: Double = 0.0
+    @Published var fatsOutputText: Double = 0.0
+    @Published var proteinOutputText: Double = 0.0
+    
+    @Published var carbohydrateSlider = 50.0
+    @Published var fatsSlider = 25.0
+    @Published var proteinSlider = 25.0
+    
     @State var age: Double = 0.0
     @State var weight: Double = 0.0
     @State var heightFeet: Double = 0.0
     @State var heightInches: Double = 0.0
     
+//    init() {}
     
     var calculateDailyCalories: Double {
         switch gender {
@@ -59,6 +68,7 @@ class UserDataViewModel: ObservableObject {
             }
         }
         return dailyCalories
+        
     }
     
     // MARK: - Male Math
@@ -152,10 +162,10 @@ class UserDataViewModel: ObservableObject {
 //    }
     
     var convertImperialHeight: Double {
-         Measurement(value: userData!.heightFeet, unit: UnitLength.feet)
+        Measurement(value: userData!.heightFeet, unit: UnitLength.feet)
             .converted(to: UnitLength.centimeters)
             .value
-         + Measurement(value: userData!.heightInches, unit: UnitLength.inches)
+            + Measurement(value: userData!.heightInches, unit: UnitLength.inches)
             .converted(to: UnitLength.centimeters)
             .value
     }
@@ -204,134 +214,50 @@ class UserDataViewModel: ObservableObject {
         let getProteinCalories = dailyCalories * defaultProtienMultiplyer
         return getProteinCalories / 4
     }
+    
+    func synchronizedSlider(from bindings: [Binding<Double>], index: Int) -> some View {
+        return Slider(value: synchronizedBinding(from: bindings, index: index), in: 0...100)
+    }
+    func synchronizedBinding(from bindings: [Binding<Double>], index: Int) -> Binding<Double> {
+        
+        return Binding(get: {
+            return bindings[index].wrappedValue}, set: { [self] newValue in
+            
+            let sum = bindings.indices
+                .lazy
+                .filter{ $0 != index }
+                .map{ bindings[$0]
+                    .wrappedValue }
+                .reduce(0.0, +)
+            
+            
+            let remaining = 100.0 - newValue
+            
+            if sum != 0.0 {
+                for i in bindings.indices {
+                    if i != index {
+                        bindings[i].wrappedValue = bindings[i].wrappedValue * remaining / sum
+                    }
+                }
+            } else {
+                let newOtherValue = remaining / Double(bindings.count - 1)
+                for i in bindings.indices {
+                    if i != index {
+                        bindings[i].wrappedValue = newOtherValue
+                    }
+                }
+            }
+                
+            bindings[index].wrappedValue = newValue
+                carbohydrateSlider = carbohydrateCalculation
+                fatsSlider = fatCalculation
+                proteinSlider = proteinCalculation
+        })
+    }
+
 }
-//    func calculateBMR() -> Double {
-//        let userHeightInput = convertImperialHeight
-//        let userWeightInput = convertImperialWeight
-//        let userAgeInput = (userData?.age)!
-//
-//
-//        switch gender {
-//        case .male:
-//            let stepOne = userWeightInput * 10
-//            let stepTwo = userHeightInput * 6.25
-//            let stepThree = userAgeInput * 5
-//            let stepFour = Int(stepOne + stepTwo) - stepThree + 5
-//            let stepFive = Double(stepFour) - goal.rawValue
-//
-//            return stepFive
-//        case .female:
-//            let stepOne = userWeightInput * 10
-//            let stepTwo = userHeightInput * 6.25
-//            let stepThree = Double(userAgeInput) * 5
-//            let stepFour = stepOne + stepTwo - stepThree - 161
-//
-//            return stepFour
-//        }
-//    }
-//    func convertImperialHeightToCM() -> Double {
-//        let convertFeetToCm = Measurement(value: userData!.heightFeet, unit: UnitLength.feet)
-//            .converted(to: UnitLength.centimeters)
-//        let convertInchesToCm = Measurement(value: userData!.heightInches, unit: UnitLength.inches)
-//            .converted(to: UnitLength.centimeters)
-//        let addUpCentimeters = convertFeetToCm + convertInchesToCm
-//        return addUpCentimeters.value
-//    }
-//    func convertImperialWeight() -> Double {
-//        let usersPounds = Measurement(value: userData!.weight, unit: UnitMass.pounds)
-//            .converted(to: UnitMass.kilograms)
-//        return usersPounds.value
-//    }
-//
-//    func calculateMaleBMR() -> Double {
-//        let userHeightInput = convertImperialHeight
-//        let userWeightInput = convertImperialWeight
-//        let userAgeInput = (userData!.age)
-//
-//        let stepOne = userWeightInput * 10
-//        let stepTwo = userHeightInput * 6.25
-//        let stepThree = userAgeInput * 5
-//        let stepFour = Int(stepOne + stepTwo) - stepThree + 5
-//        let stepFive = Double(stepFour) - goal.rawValue
-//
-//        return stepFive
-//
-//    }
-//    func calculateProtein() -> Double {
-//        let defaultProtienMultiplyer: Double = 0.25
-//        let getProteinCalories = dailyCalories * defaultProtienMultiplyer
-//        let getProteinMacros = getProteinCalories / 4
-//        return getProteinMacros
-//    }
-//}
-//    func calculateFat() -> Double {
-//        let defaultFatMultiplyer: Double = 0.25
-//        let getFatCalories = dailyCalories * defaultFatMultiplyer
-//        let getFatMacros = getFatCalories / 9
-//        return getFatMacros
-//    }
-//    func calculateCarbohydrates() -> Double {
-//        let defaultCarbohydrateMultiplyer: Double = 0.50
-//        let getCarbCalories = dailyCalories * defaultCarbohydrateMultiplyer
-//        let getCarbMacros = getCarbCalories / 4
-//        return getCarbMacros
-//    }
-//
-//    func calculateFemaleBMR() -> Double {
-//        let userHeightInput = convertImperialHeight
-//        let userWeightInput = convertImperialWeight
-//        let userAgeInput = (userData!.age)
-//
-//        let stepOne = userWeightInput * 10
-//        let stepTwo = userHeightInput * 6.25
-//        let stepThree = Double(userAgeInput) * 5
-//        let stepFour = stepOne + stepTwo - stepThree - 161
-//
-//        return stepFour
-//    }
 
 
-/*
  
- func synchronizedSlider(from bindings: [Binding<Double>], index: Int) -> some View {
- return Slider(value: synchronizedBinding(from: bindings, index: index), in: 0...100)
- }
- func synchronizedBinding(from bindings: [Binding<Double>], index: Int) -> Binding<Double> {
- 
- return Binding(get: {
- return bindings[index].wrappedValue
- }, set: { [self] newValue in
- 
- let sum = bindings.indices
- .lazy
- .filter{ $0 != index }
- .map{ bindings[$0]
- .wrappedValue }
- .reduce(0.0, +)
- 
- 
- let remaining = 100.0 - newValue
- 
- if sum != 0.0 {
- for i in bindings.indices {
- if i != index {
- bindings[i].wrappedValue = bindings[i].wrappedValue * remaining / sum
- }
- }
- } else {
- let newOtherValue = remaining / Double(bindings.count - 1)
- for i in bindings.indices {
- if i != index {
- bindings[i].wrappedValue = newOtherValue
- }
- }
- }
- bindings[index].wrappedValue = newValue
- //                calculationData.carbsOutputText = carbohydrateMath() / 100
- //                calculationData.fatsOutputText  = fatMath() / 100
- //                calculationData.proteinOutputText = proteinMath() / 100
- 
- })
- }
- 
- */
+
+
