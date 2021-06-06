@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// TODO: - Fix issue with sliders not sliding. Unsure exact issue currently.
+
 struct CalorieSliderView: View {
     @ObservedObject var dataModel: UserDataViewModel
     @State var selection = 2
@@ -42,11 +44,7 @@ struct CalorieSliderView: View {
             dataModel.synchronizedSlider(from: allBindings, index: 1)
             dataModel.synchronizedSlider(from: allBindings, index: 2)
         }
+        .padding()
     }
 }
 
-//struct CalorieSliderView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CalorieSliderView(dataModel: UserDataViewModel())
-//    }
-//}
