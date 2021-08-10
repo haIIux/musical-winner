@@ -14,9 +14,9 @@ struct HomeView: View {
         TabView(selection: $selection) {
             UserMetricsView(dataModel: userModelViewModel, selection: $selection)
                 .tag(0)
-            GoalAndActivityView(dataModel: userModelViewModel)
+            GoalAndActivityView(dataModel: userModelViewModel, selection: $selection)
                 .tag(1)
-            CalorieSliderView(dataModel: userModelViewModel)
+            CalorieOutputView(dataModel: userModelViewModel)
                 .tag(2)
         }
         .tabViewStyle(PageTabViewStyle())

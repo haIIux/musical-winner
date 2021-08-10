@@ -22,11 +22,7 @@ class UserDataViewModel: ObservableObject {
     @Published var carbsOutputText: Double = 0.0
     @Published var fatsOutputText: Double = 0.0
     @Published var proteinOutputText: Double = 0.0
-    
-    @Published var carbohydrateSlider: Double = 50.0
-    @Published var fatsSlider: Double = 25.0
-    @Published var proteinSlider: Double = 25.0
-    
+
     @State var age: Double = 0.0
     @State var weight: Double = 0.0
     @State var heightFeet: Double = 0.0
@@ -213,46 +209,6 @@ class UserDataViewModel: ObservableObject {
         let defaultProtienMultiplyer: Double = 0.25
         let getProteinCalories = dailyCalories * defaultProtienMultiplyer
         return getProteinCalories / 4
-    }
-    
-    func synchronizedSlider(from bindings: [Binding<Double>], index: Int) -> some View {
-        return Slider(value: synchronizedBinding(from: bindings, index: index), in: 0...100)
-    }
-    func synchronizedBinding(from bindings: [Binding<Double>], index: Int) -> Binding<Double> {
-        
-        return Binding(get: {
-            return bindings[index].wrappedValue}, set: { [self] newValue in
-            
-            let sum = bindings.indices
-                .lazy
-                .filter{ $0 != index }
-                .map{ bindings[$0]
-                    .wrappedValue }
-                .reduce(0.0, +)
-            
-            
-            let remaining = 100.0 - newValue
-            
-            if sum != 0.0 {
-                for i in bindings.indices {
-                    if i != index {
-                        bindings[i].wrappedValue = bindings[i].wrappedValue * remaining / sum
-                    }
-                }
-            } else {
-                let newOtherValue = remaining / Double(bindings.count - 1)
-                for i in bindings.indices {
-                    if i != index {
-                        bindings[i].wrappedValue = newOtherValue
-                    }
-                }
-            }
-                
-            bindings[index].wrappedValue = newValue
-                carbohydrateSlider = carbohydrateCalculation
-                fatsSlider = fatCalculation
-                proteinSlider = proteinCalculation
-        })
     }
 
 }
