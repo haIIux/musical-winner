@@ -14,14 +14,12 @@ struct Protein: View {
 
             VStack {
                 Text("\(String(format: "%.0f", dataModel.proteinCalculation))g")
-                    .font(.headline)
+                    .font(.title)
                     .bold()
-                    .padding(.top, 10)
-
+                    .padding(.top, 5)
                 Text("Protein")
-                    .font(.caption)
+                    .font(.system(size: 12, weight: .semibold, design: .default))
                     .foregroundColor(.white)
-                    .padding(.top, 2)
             }
             .foregroundColor(.white)
             .background(
@@ -32,7 +30,7 @@ struct Protein: View {
             Image("protein")
                 .resizable()
                 .frame(width: 50, height: 50, alignment: .center)
-                .padding(.bottom, 100)
+                .padding(.bottom, 90)
         }
     }
 }

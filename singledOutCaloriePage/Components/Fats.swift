@@ -14,14 +14,13 @@ struct Fats: View {
 
             VStack {
                 Text("\(String(format: "%.0f", dataModel.fatCalculation))g")
-                    .font(.headline)
+                    .font(.title)
                     .bold()
-                    .padding(.top, 10)
+                    .padding(.top, 5)
 
                 Text("Fats")
-                    .font(.caption)
+                    .font(.system(size: 12, weight: .semibold, design: .default))
                     .foregroundColor(.white)
-                    .padding(.top, 2)
             }
             .foregroundColor(.white)
             .background(
@@ -33,6 +32,7 @@ struct Fats: View {
                 .resizable()
                 .frame(width: 50, height: 50, alignment: .center)
                 .padding(.bottom, 100)
+                .padding(.trailing)
         }
     }
 }

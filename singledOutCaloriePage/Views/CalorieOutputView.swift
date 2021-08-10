@@ -57,7 +57,7 @@ extension CalorieOutputView {
                     .trim(from: show ? 0 : 0.99, to: 1)
                     .stroke(
                         LinearGradient(
-                            gradient: Gradient(colors: [Color.blue, Color.orange]),
+                            gradient: Gradient(colors: [Color.blue, Color.mint]),
                             startPoint: .leading,
                             endPoint: .trailing),
                         style: StrokeStyle(lineWidth: 15, lineCap: .round)
