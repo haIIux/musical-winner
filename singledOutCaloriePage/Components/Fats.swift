@@ -32,7 +32,6 @@ struct Fats: View {
                 .resizable()
                 .frame(width: 50, height: 50, alignment: .center)
                 .padding(.bottom, 100)
-                .padding(.trailing)
         }
     }
 }

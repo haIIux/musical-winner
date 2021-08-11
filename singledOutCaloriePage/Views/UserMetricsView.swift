@@ -71,14 +71,18 @@ struct UserMetricsView: View {
                     Image(systemName: "arrow.right")
                 }
             })
+                .foregroundColor(.white)
+                .background(.blue)
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .buttonStyle(.borderedProminent)
         }
         .padding()
     }
 }
-    
-    
-    struct UserMetricsView_Previews: PreviewProvider {
-        static var previews: some View {
-            UserMetricsView(dataModel: UserDataViewModel(), selection: .constant(0))
-        }
+
+
+struct UserMetricsView_Previews: PreviewProvider {
+    static var previews: some View {
+        UserMetricsView(dataModel: UserDataViewModel(), selection: .constant(0))
     }
+}
